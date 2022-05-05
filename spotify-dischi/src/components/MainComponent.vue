@@ -10,7 +10,9 @@
       </div>
       <!-- /.row -->
 
-      <div class="row" v-else>{{error}}</div>
+      <div class="row" v-else>
+        <h1 class="text-white">{{error}}</h1>
+      </div>
     </div>
     <!-- /.container -->
   </main>
@@ -31,7 +33,7 @@ export default {
       API_url: "https://flynn.boolean.careers/exercises/api/array/music",
       loading: false,
       dischi: null,
-      error: null,
+      error: 'Sorry there are problems, please try again later....',
     };
   },
 
@@ -42,10 +44,6 @@ export default {
       this.dischi = response.data.response;
       this.loading = true;
     })
-    .catch((error) => {
-        console.log(error);
-        this.error = 'Sorry there are problems, please try again later.'
-      })
   },
 };
 </script>
