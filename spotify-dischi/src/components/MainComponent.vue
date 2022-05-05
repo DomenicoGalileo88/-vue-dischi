@@ -2,7 +2,8 @@
   <main>
     <div class="container">
       <div class="row" v-if="loading">
-        <div class="col-3" v-for="(disco, index) in dischi" :key="index">
+        <discoCard :disco='disco'  v-for="(disco, index) in dischi" :key="index" />
+        <!-- <div class="col-3" v-for="(disco, index) in dischi" :key="index">
             <div class="card">
               <img :src="disco.poster" class="card-img-top" :lt="disco.author" />
               <div class="card-body">
@@ -13,17 +14,21 @@
                 <small class="small_text">{{disco.year}}</small>
               </div>
             </div>
-        </div>
+        </div> -->
       </div>
     </div>
   </main>
 </template>
 
 <script>
+import discoCard from '@/components/DiscoCardComponent.vue';
 import axios from "axios";
 
 export default {
   name: "MainComponent",
+  components:{
+    discoCard,
+  },
   data() {
     return {
       API_url: "https://flynn.boolean.careers/exercises/api/array/music",
@@ -51,37 +56,9 @@ export default {
 <style lang="scss" scoped>
 main {
   background-color: $main_bg;
-
-  .col-3{
-    width: 18%;
-    margin: 0.5rem;
-  }
-  img {
-    max-width: 90%;
-    object-fit: cover;
-    aspect-ratio: 1/1;
-    padding: 1rem;
-  }
-
-  .card{
-    display: flex;
-    align-items: center;
-    height: 100%;
-    background-color: $header_bg;
-    border: none;
-    text-align: center;
-  }
-
   .row{
     padding: 3rem 0;
   }
 
-  .card_title{
-    color: $text_light;
-  }
-
-  .card-text, .small_text{
-    color: $text_dark;
-  }
 }
 </style>
