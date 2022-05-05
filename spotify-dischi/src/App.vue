@@ -1,16 +1,19 @@
 <template>
   <div id="app">
-    <HeaderComponent />
+    <SiteHeader />
+    <SiteMain />
   </div>
 </template>
 
 <script>
-import HeaderComponent from '@/components/HeaderComponent.vue';
+import SiteHeader from '@/components/HeaderComponent.vue';
+import SiteMain from '@/components/MainComponent.vue';
 
 export default {
   name: 'App',
   components: {
-    HeaderComponent
+    SiteHeader,
+    SiteMain
   }
 }
 </script>
