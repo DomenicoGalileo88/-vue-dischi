@@ -14,7 +14,7 @@ export default {
 
 <style lang="scss" scoped>
     header{
-        background-color: rgb(12, 118, 153);
+        background-color: $header_bg;
         padding: 0.7rem;
         img{
     width: 40px;

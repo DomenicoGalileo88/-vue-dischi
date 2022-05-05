@@ -10,7 +10,7 @@
                 <p class="card-text m-0">
                   {{disco.author}}
                 </p>
-                <small>{{disco.year}}</small>
+                <small class="small_text">{{disco.year}}</small>
               </div>
             </div>
         </div>
@@ -50,7 +50,7 @@ export default {
 
 <style lang="scss" scoped>
 main {
-  background-color: rgb(0, 76, 119);
+  background-color: $main_bg;
 
   .col-3{
     width: 18%;
@@ -67,13 +67,21 @@ main {
     display: flex;
     align-items: center;
     height: 100%;
-    background-color: rgb(12, 118, 153);
+    background-color: $header_bg;
     border: none;
     text-align: center;
   }
 
   .row{
     padding: 3rem 0;
+  }
+
+  .card_title{
+    color: $text_light;
+  }
+
+  .card-text, .small_text{
+    color: $text_dark;
   }
 }
 </style>
