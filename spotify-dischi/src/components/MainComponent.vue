@@ -2,31 +2,28 @@
   <main>
     <div class="container">
       <div class="row" v-if="loading">
-        <discoCard :disco='disco'  v-for="(disco, index) in dischi" :key="index" />
-        <!-- <div class="col-3" v-for="(disco, index) in dischi" :key="index">
-            <div class="card">
-              <img :src="disco.poster" class="card-img-top" :lt="disco.author" />
-              <div class="card-body">
-                <h6 class="card_title text-uppercase">{{disco.title}}</h6>
-                <p class="card-text m-0">
-                  {{disco.author}}
-                </p>
-                <small class="small_text">{{disco.year}}</small>
-              </div>
-            </div>
-        </div> -->
+        <discoCard
+          :disco="disco"
+          v-for="(disco, index) in dischi"
+          :key="index"
+        />
       </div>
+      <!-- /.row -->
+
+      <div class="row" v-else>{{error}}</div>
     </div>
+    <!-- /.container -->
   </main>
 </template>
 
 <script>
-import discoCard from '@/components/DiscoCardComponent.vue';
+import discoCard from "@/components/DiscoCardComponent.vue";
 import axios from "axios";
 
 export default {
   name: "MainComponent",
-  components:{
+
+  components: {
     discoCard,
   },
   data() {
@@ -34,7 +31,7 @@ export default {
       API_url: "https://flynn.boolean.careers/exercises/api/array/music",
       loading: false,
       dischi: null,
-      /* error: null, */
+      error: null,
     };
   },
 
@@ -44,11 +41,11 @@ export default {
       console.log(response);
       this.dischi = response.data.response;
       this.loading = true;
-    });
-    /* .catch((error) => {
+    })
+    .catch((error) => {
         console.log(error);
         this.error = 'Sorry there are problems, please try again later.'
-      }) */
+      })
   },
 };
 </script>
@@ -56,9 +53,8 @@ export default {
 <style lang="scss" scoped>
 main {
   background-color: $main_bg;
-  .row{
+  .row {
     padding: 3rem 0;
   }
-
 }
 </style>
