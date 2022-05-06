@@ -1,11 +1,12 @@
 <template>
   <main>
-    <GenreComponents v-model="selectedGenre" @formSubmit="selectedGenre" />
     <div class="container">
+      <SelectDiscGenere v-model="genere" @selezionaGenere="selectGenere"></SelectDiscGenere>
+    
       <div class="row" v-if="loading">
         <discoCard
           :disco="disco"
-          v-for="(disco, index) in dischi"
+          v-for="(disco, index) in filterGenere"
           :key="index"
         />
       </div>
@@ -21,15 +22,16 @@
 
 <script>
 import discoCard from "@/components/DiscoCardComponent.vue";
-import GenreComponents from "@/components/GenreComponents.vue";
 import axios from "axios";
+import SelectDiscGenere from '@/components/SelectDiscGenere.vue';
+import state from '@/state.js';
 
 export default {
   name: "MainComponent",
 
   components: {
     discoCard,
-    GenreComponents,
+    SelectDiscGenere,
   },
   data() {
     return {
@@ -37,24 +39,42 @@ export default {
       loading: false,
       dischi: null,
       error: "Sorry there are problems, please try again later....",
-      changeGenre: null,
+      genere: '',
     };
   },
 
   methods: {
-    selectedGenre() {
+    selectGenere() {
       console.log("Hai selezionato un genere");
+      console.log(this.genere);
+      state.genere = this.genere;
+      console.log(state);
     },
+  },
+
+  computed: {
+    filterGenere(){
+      if (state.genere) {
+        console.log(state.genere);
+        return this.dischi.filter(disco => {
+       return disco.genre.toLowerCase().includes(state.genere.toLowerCase())
+      })
+      } else {
+        return this.dischi
+      }
+    }
   },
 
   mounted() {
     axios.get(this.API_url).then((response) => {
       /* console.log(this); */
-      console.log(response);
+      //console.log(response);
       this.dischi = response.data.response;
       this.loading = true;
     });
   },
+
+
 };
 </script>
 
