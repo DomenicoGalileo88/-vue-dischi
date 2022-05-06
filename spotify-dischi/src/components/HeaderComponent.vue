@@ -1,7 +1,7 @@
 <template>
   <header>
       <div class="logo">
-      <img width="40" src="@/assets/img/logo-small.svg" alt="Spotify logo">
+      <img width="40" src="@/assets/img/logo.png" alt="Spotify logo">
   </div>
   </header>
 </template>
